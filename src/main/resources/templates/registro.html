@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Usuario</title>
+    <!-- Incluir CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Registro de Usuario</h2>
+    <form th:action="@{/registro}" th:object="${usuario}" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}">
+            <!-- Mensaje de error -->
+            <span class="text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" class="form-control" id="correo" name="correo" required>
+            <div th:if="${error}">
+                <small style="color: red;">El correo electrónico ya está registrado.</small>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="contraseña">Contraseña</label>
+            <input type="password" class="form-control" id="contraseña" th:field="*{contraseña}" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <!-- Mensaje de error -->
+            <span class="text-danger" th:if="${#fields.hasErrors('contraseña')}" th:errors="*{contraseña}"></span>
+            <small class="form-text text-muted">La contraseña debe contener al menos 8 caracteres, incluyendo al menos una letra y un número.</small>
+        </div>
+        <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" th:field="*{telefono}">
+            <!-- Mensaje de error -->
+            <span class="text-danger" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
+        </div>
+        <div class="form-group">
+            <label for="citycode">Código de Ciudad</label>
+            <input type="text" class="form-control" id="citycode" th:field="*{citycode}">
+            <!-- Mensaje de error -->
+            <span class="text-danger" th:if="${#fields.hasErrors('citycode')}" th:errors="*{citycode}"></span>
+        </div>
+        <div class="form-group">
+            <label for="countrycode">Código de País</label>
+            <input type="text" class="form-control" id="countrycode" th:field="*{countrycode}">
+            <!-- Mensaje de error -->
+            <span class="text-danger" th:if="${#fields.hasErrors('countrycode')}" th:errors="*{countrycode}"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
+<!-- Incluir scripts de Bootstrap y otros si es necesario -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-PMElxuHN5T/JvcW6Ic2qzdfvsmv4+DUee4YF8dm8YoAvTfMQF7dF1P3T27YYTqT2"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+        crossorigin="anonymous"></script>
+</body>
+</html>
